@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星空体育 – 关于我们</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #fef0db 0%, #fbd7b5 45%, #f8cba0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            color: #3d2c1b;
+        }
+
+        .page-wrapper {
+            max-width: 860px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 白色卡片容器 */
+        .card {
+            background: #fffffffa;
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 2.8rem 2.6rem;
+            box-shadow: 0 20px 40px -16px rgba(100, 60, 30, 0.25), 0 6px 12px rgba(0,0,0,0.03);
+            transition: box-shadow 0.2s;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 2rem 1.4rem;
+                border-radius: 28px;
+            }
+        }
+
+        /* Hero 区域 */
+        .hero {
+            margin-bottom: 2.8rem;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: #fcedd2;
+            color: #7c4e2a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 650;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: #2c1b0c;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(120deg, #e6853a 0%, #d46b2a 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #5b3e26;
+            max-width: 600px;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* 通用分隔 */
+        .section {
+            margin-top: 2.8rem;
+            padding-top: 0.2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 620;
+            letter-spacing: -0.01em;
+            color: #362312;
+            border-left: 5px solid #df7d3a;
+            padding-left: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .section-sub {
+            font-weight: 500;
+            color: #5d402a;
+            margin-bottom: 0.8rem;
+        }
+
+        /* 优势格子——使用flex换行 */
+        .advantage-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.6rem;
+            margin: 1.6rem 0 0.4rem;
+        }
+
+        .advantage-item {
+            flex: 1 1 160px;
+            min-width: 130px;
+            background: #fef7ed;
+            padding: 1.2rem 1rem;
+            border-radius: 28px;
+            transition: all 0.2s;
+            border: 1px solid #fae7d0;
+        }
+
+        .advantage-item h3 {
+            font-size: 1.2rem;
+            font-weight: 620;
+            color: #542f16;
+            margin-bottom: 0.3rem;
+        }
+
+        .advantage-item p {
+            font-size: 0.9rem;
+            color: #5b3e26;
+        }
+
+        /* 说明段落 / 场景描述 */
+        .description p {
+            margin-bottom: 1rem;
+        }
+
+        .description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .inline-link {
+            color: #b45b24;
+            font-weight: 550;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #b45b24;
+            color: #7b3d14;
+        }
+
+        .faq-summary {
+            background: #fbf3e9;
+            border-radius: 30px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 620;
+            color: #2f1c0b;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .faq-q::before {
+            content: "•";
+            color: #d87a38;
+            font-weight: bold;
+            margin-right: 0.6rem;
+        }
+
+        .faq-a {
+            color: #4d3521;
+            padding-left: 1.6rem;
+            font-size: 0.95rem;
+        }
+
+        .bottom-links {
+            margin-top: 2.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            border-top: 2px solid #f1dbc5;
+            padding-top: 1.8rem;
+            align-items: center;
+        }
+
+        .bottom-links a {
+            color: #5b3b20;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            background: #f3e3d1;
+            transition: background 0.2s, color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .bottom-links a:hover {
+            background: #dba77c;
+            color: #1f1208;
+        }
+
+        .bottom-links .star-link {
+            background: #d87a38;
+            color: #fff9f1;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(170, 80, 20, 0.15);
+        }
+
+        .bottom-links .star-link:hover {
+            background: #b86229;
+            color: white;
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            font-size: 0.85rem;
+            color: #694d33;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e6cfba;
+            margin: 1.6rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <div class="card">
+        <!-- hero 区 -->
+        <div class="hero">
+            <div class="hero-tag">✦ 一步入夜 · 星河相伴</div>
+            <h1>从跑道到球场，<br><span class="highlight">星空体育</span> 陪你一起</h1>
+            <p>不只是赛事，更是热爱者聚集的坐标。在自然的节奏里，找到属于你的运动频率。</p>
+        </div>
+
+        <!-- 优势区：三个核心特质 -->
+        <div class="section">
+            <h2 class="section-title">为什么选择这里</h2>
+            <div class="advantage-grid">
+                <div class="advantage-item">
+                    <h3>📊 信息聚合</h3>
+                    <p>覆盖足球、篮球、网球等热点赛况，数据更新平顺，帮你快速掌握动态。</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>🌐 中文视野</h3>
+                    <p>界面与内容以中文为主，减少语言门槛，让观赛与讨论更贴近日常。</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>🧭 简洁入口</h3>
+                    <p>避免繁复菜单，核心功能直观排布，打开就能直接进入主题。</p>
+                </div>
+            </div>
+            <p style="margin-top: 1.2rem; font-size: 0.95rem; color: #543b25;">
+                对许多朋友来说，<a href="https://cn-m-xingkongsports.com" class="inline-link">星空体育</a> 意味着一种轻量的陪伴——
+                不必在信息洪流里反复搜索，安静地看看比分、读读短评，已经足够。
+            </p>
+        </div>
+
+        <!-- 说明区 / 场景与内容 -->
+        <div class="section description">
+            <h2 class="section-title">它适合哪些时刻</h2>
+            <p>工作日午休时，翻两页赛事简报；深夜下班后，瞥一眼刚刚结束的加时赛结果。不需要长篇分析，只求及时与准确。</p>
+            <p>周末约了朋友打球前，也会习惯性地打开页面，看看同一时间还有哪些焦点战在进行——这种心照不宣的联结，可能就是体育社区最初的样子。</p>
+            <p>很多用户提到，页面里那种温暖的色调和干净的布局，让人觉得不是在“刷数据”，而是在读一份有人情味的运动日记。</p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-summary">
+            <h3 style="font-weight: 600; margin-bottom: 1rem; font-size: 1.2rem; color: #2f1b09;">❓ 一些常见疑问</h3>
+            <div class="faq-item">
+                <div class="faq-q">内容覆盖哪些项目？</div>
+                <div class="faq-a">以主流团队项目为主，同时包含格斗、网球及部分户外赛事，持续补充中。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否需要注册？</div>
+                <div class="faq-a">浏览基本内容无需注册，部分个性化功能可自愿选择登录。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">信息更新频率如何？</div>
+                <div class="faq-a">常规赛事在比赛期间保持分钟级同步，赛后随即发布简要回顾。</div>
+            </div>
+            <div style="margin-top: 0.8rem; font-size: 0.9rem; color: #634b33;">
+                若还有更多想了解的，不妨直接前往 <a href="https://cn-m-xingkongsports.com" class="inline-link">星空体育</a> 页面看一看，或许比预想中更直观。
+            </div>
+        </div>
+
+        <!-- 底部链接区 -->
+        <div class="bottom-links">
+            <a href="https://cn-m-xingkongsports.com" class="star-link">星空体育</a>
+            <a href="#">赛事动态</a>
+            <a href="#">项目分类</a>
+            <a href="#">常见问题</a>
+            <span style="flex: 1; min-width: 60px;"></span>
+            <span style="font-size: 0.8rem; color: #7a5d44;">☁️ 简洁 · 克制</span>
+        </div>
+        <div class="footer-note">
+            没有夸张的承诺，只有持续的陪伴。<br>
+            希望这里能成为你运动生活里一处安静的参照点。
+        </div>
+    </div>
+</div>
+</body>
+</html>
