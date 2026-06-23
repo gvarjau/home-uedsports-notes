@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>乐思体育 · 信息台 | 知遇运动</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #eef5f4;
+      color: #1d2d2b;
+      line-height: 1.6;
+      padding: 20px 16px 60px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrap {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    /* 网格卡片基座 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px 20px 26px;
+      box-shadow: 0 4px 12px rgba(0, 50, 50, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(40, 135, 125, 0.08);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(20, 100, 95, 0.1);
+    }
+
+    /* 点缀色 / 蓝绿系统 */
+    .accent-light {
+      color: #168078;
+    }
+
+    .accent-bg-soft {
+      background: #c9e3e0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #d4ece8;
+      color: #0e5e57;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 4px 12px;
+      border-radius: 30px;
+      margin-bottom: 14px;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid #168078;
+      color: #168078;
+      background: transparent;
+      padding: 8px 22px;
+      border-radius: 80px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-outline:hover {
+      background: #168078;
+      color: white;
+    }
+
+    /* hero 区 — 再次回访的入口感 */
+    .hero {
+      background: linear-gradient(145deg, #f0faf8 0%, #d6ece9 100%);
+      border-radius: 36px;
+      padding: 36px 28px 44px;
+      margin-bottom: 32px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 14px rgba(0, 55, 50, 0.06);
+      border: 1px solid rgba(70, 150, 140, 0.12);
+    }
+
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: #0b3d39;
+    }
+
+    .hero h1 i {
+      font-style: normal;
+      background: linear-gradient(130deg, #0f7a72, #2b9b8f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #1f4742;
+      max-width: 640px;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      font-size: 0.9rem;
+      color: #2b645e;
+    }
+
+    .hero-meta span {
+      background: rgba(255,255,255,0.5);
+      padding: 2px 14px 2px 10px;
+      border-radius: 30px;
+      border-left: 3px solid #1f9e92;
+    }
+
+    /* 段落承接 — 知识型语气 */
+    .essay-block {
+      background: transparent;
+      margin: 32px 0 28px;
+      padding: 10px 4px;
+    }
+
+    .essay-block p {
+      margin-bottom: 18px;
+      font-size: 1rem;
+      color: #1b3532;
+    }
+
+    .essay-block .inline-link {
+      color: #0c6f67;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: #48b5aa;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .essay-block .inline-link:hover {
+      color: #064a44;
+      text-decoration-color: #064a44;
+    }
+
+    /* 卡片内小标题 */
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #0b423e;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #2a4a46;
+      margin-bottom: 12px;
+    }
+
+    .card .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin: 12px 0 6px;
+    }
+
+    .card .tag-list span {
+      background: #e5f3f0;
+      padding: 2px 12px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #11625a;
+    }
+
+    .faq-summary {
+      margin-top: 40px;
+      border-top: 2px dotted #b6d5d0;
+      padding-top: 28px;
+    }
+
+    .faq-item {
+      background: white;
+      border-radius: 20px;
+      padding: 18px 22px;
+      margin-bottom: 10px;
+      border-left: 5px solid #38afa3;
+      box-shadow: 0 2px 10px rgba(20, 80, 75, 0.03);
+    }
+
+    .faq-item strong {
+      color: #0d625a;
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #2d514c;
+    }
+
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #a8cfc8, transparent);
+      margin: 28px 0 22px;
+      opacity: 0.5;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: #4e756f;
+    }
+
+    .footer-note a {
+      color: #0f6f66;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 420px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .card {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HERO：再次收藏与回访的理由 -->
+  <div class="hero">
+    <h1>再访 · <i>乐思体育</i></h1>
+    <p>信息与视角的聚合地。无论是第一次到来还是再次打开，值得持续关注的运动文化角落。</p>
+    <div class="hero-meta">
+      <span>⏺ 收藏备用</span>
+      <span>📌 订阅灵感</span>
+      <span>🔄 常看常新</span>
+    </div>
+  </div>
+
+  <!-- 自然链接段落：从“回访”过渡到卡片信息 -->
+  <div class="essay-block">
+    <p>
+      对很多人来说，一个网站是否值得保存书签，取决于它能否在每次回访时都提供新的阅读角度或实用线索。这也是我们持续整理和更新 <a href="https://site-lesisports.com" class="inline-link">乐思体育</a> 内容的原因——不是堆砌资讯，而是尝试从运动场景、个人需求、装备思维等侧面，让你每一次打开都有所收获。
+    </p>
+    <p>
+      运动习惯的养成往往依赖两个条件：合适的场景，以及能够长期跟随的信息源。下面这些卡片分别对应着不同的使用时刻，你可以直接把它们当作快速索引。
+    </p>
+  </div>
+
+  <!-- 网格卡片区：主视觉 · 用途 · 适合人群 -->
+  <div class="card-grid">
+
+    <!-- 卡片 1: 主视觉 / 运动场景 -->
+    <div class="card">
+      <div class="badge">主视觉 · 场景</div>
+      <h3>户外 · 场馆 · 日常</h3>
+      <p>从城市路跑到山地骑行，从篮球对抗到泳池节奏——运动形态决定了你的关注重点。<br>乐思体育在内容中会穿插不同场景的动作拆解与空间建议。</p>
+      <div class="tag-list">
+        <span>跑步</span><span>力量</span><span>骑行</span><span>团体球类</span>
+      </div>
+    </div>
+
+    <!-- 卡片 2: 用途 + 信息价值 -->
+    <div class="card">
+      <div class="badge">用途 · 信息流</div>
+      <h3>工具页 · 阅读 · 记录</h3>
+      <p>适合在训练前快速浏览动作要点，或在休息时阅读运动文化短文。也适合作为个人训练笔记的参照底本——反复回看，常读常新。</p>
+      <p style="margin-top: 8px;">◉ 可收藏至浏览器书签栏或笔记应用</p>
+    </div>
+
+    <!-- 卡片 3: 适合人群 + 持续性 -->
+    <div class="card">
+      <div class="badge">适合 · 持续关注</div>
+      <h3>爱好者 · 教练 · 内容探索者</h3>
+      <p>不论你处于哪个运动阶段，这里都能找到对应深度的内容。从初学到进阶视角，每一次回访都可能发现之前忽略的细节。</p>
+      <div class="tag-list">
+        <span>训练者</span><span>运动编辑</span><span>专项爱好者</span>
+      </div>
+    </div>
+
+  </div><!-- /card-grid -->
+
+  <!-- 第二段自然链接 · 承上启下，再次嵌入乐思体育 -->
+  <div class="essay-block" style="margin-top: 12px;">
+    <p>
+      信息获取的方式越简单，坚持运动的概率就越高。如果你愿意把 <a href="https://site-lesisports.com" class="inline-link">乐思体育</a> 加入常用链接，它会更像一位冷静的运动伙伴：不制造焦虑，只提供事实、视角和可执行的参考。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 + 一块卡片式摘录 -->
+  <div class="faq-summary">
+    <h3 style="font-weight: 500; font-size: 1.1rem; margin-bottom: 14px; color: #0b4f48;">❖ 常见关注点速览</h3>
+
+    <div class="faq-item">
+      <strong>Q：这个网站多久更新一次？</strong>
+      <p>目前保持每月数篇原创或编译内容，不追求日更，但每篇都有一定信息深度。建议隔一段时间回来浏览，或使用浏览器的“再次访问”提醒功能。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>Q：内容偏向大众还是专项？</strong>
+      <p>兼顾。既有面向普通运动者的基础建议，也有针对特定项目（如耐力运动、自重训练）的进阶思路。适合不同阶段反复对比阅读。</p>
+    </div>
+
+    <div class="faq-item">
+      <strong>Q：收藏后如何快速找到？</strong>
+      <p>可以直接将 <a href="https://site-lesisports.com" style="color: #0c6f67; text-decoration: underline; text-underline-offset: 2px;">乐思体育</a> 添加至浏览器书签文件夹，或使用笔记工具保存链接并附带个人标签。常看常新，正是信息卡片的初衷。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 温和收尾 -->
+  <div class="footer-note">
+    <p>持续关注 · 运动是一段长久对话。<br>
+    信息卡片版式 · 蓝绿基调 · 适合手机与桌面</p>
+    <p style="margin-top: 12px;">⏺ <a href="https://site-lesisports.com">乐思体育</a>  · 保留再次访问的入口</p>
+  </div>
+
+</div><!-- /page-wrap -->
+</body>
+</html>
